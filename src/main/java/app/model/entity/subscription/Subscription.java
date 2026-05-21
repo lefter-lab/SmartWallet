@@ -1,55 +1,44 @@
 package app.model.entity.subscription;
 
 import app.model.entity.user.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "subscriptions")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "subscription")
 public class Subscription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
-
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private SubscriptionStatus status;
-
-    @Enumerated(EnumType.STRING)
-    private SubscriptionType type;
-
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private SubscriptionPeriod period;
-
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private SubscriptionType type;
+    @Column(nullable = false)
     private BigDecimal price;
-
-    private Boolean renewalAllowed;
-
+    @Column(nullable = false)
+    private boolean renewalAllowed;
+    @Column(nullable = false)
     private LocalDateTime createdOn;
-
+    @Column(nullable = false)
     private LocalDateTime completedOn;
 }
