@@ -1,0 +1,10 @@
+target/
+.idea/
+.local-docs/
+docx-extracted/
+docx-extracted-py/
+*.log
+*.class
+*.jar
+Exercise Spring Core Калоян Костадинов.txt
+02-Smart-Wallet-App-Exercise-Problem-Description.docx
